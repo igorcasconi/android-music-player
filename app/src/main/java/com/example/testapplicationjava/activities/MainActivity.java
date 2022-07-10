@@ -2,8 +2,9 @@ package com.example.testapplicationjava.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,30 +22,35 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class MainActivity extends AppCompatActivity {
 
   private ImageView musicImage;
   private TextView nameMusic;
+  private TextView nameArtist;
   private final String baseURL = "https://spotify23.p.rapidapi.com/";
-  private final String rapidKey = "9cAltS2JMymsh4XDwsgmYKHA6wpHp1LE1RqjsnEestrQ6wR9Ev";
-  private final String rapidHost = "spotify23.p.rapidapi.com";
   Map<String, String> headers = new HashMap<String, String>();
   private RequestQueue queue;
-  private Music musicData = new Music();;
+  private Music musicData = new Music();
+  private String rapidKey ;
+  private String rapidHost;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    this.getTrack();
 
+    rapidKey = this.getResources().getString(R.string.rapidapi_key);
+    rapidHost = this.getResources().getString(R.string.rapidapi_host);
     musicImage = findViewById(R.id.musicImage);
     musicImage.setImageResource(R.drawable.sound_waves);
     nameMusic = findViewById(R.id.nameMusic);
+    nameArtist = findViewById(R.id.nameArtist);
+
+    this.getTrack();
   }
 
   public void getTrack(){
@@ -67,11 +73,14 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray images = album.getJSONArray("images");
                 JSONObject imageData = images.getJSONObject(0);
                 String imageURL = imageData.getString("url");
+                String uriStringSong = trackFirst.getString("preview_url");
+                Uri uriSong = Uri.parse(uriStringSong);
 
                 musicData.setNameSong(nameMusic);
                 musicData.setNameArtist(nameArtist);
                 musicData.setImageSong(imageURL);
-                setTextOnActivity();
+                musicData.setUrlSong(uriSong);
+                setContentOnActivity();
               } catch (JSONException e) {
                 e.printStackTrace();
               }
@@ -86,10 +95,20 @@ public class MainActivity extends AppCompatActivity {
     queue.add(request);
   }
 
-  public void setTextOnActivity(){
+  public void setContentOnActivity() {
     nameMusic.setText(musicData.getNameSong());
+    nameArtist.setText(musicData.getNameArtist());
     new DownloadImageTask(musicImage).execute(musicData.getImageSong());
-    System.out.println(musicData.getNameArtist());
+    MediaPlayer mediaPlayer = new MediaPlayer();
+    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    try{
+      mediaPlayer.setDataSource(getApplicationContext(), musicData.getUrlSong());
+      mediaPlayer.prepare();
+      mediaPlayer.start();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
   }
 
 }
