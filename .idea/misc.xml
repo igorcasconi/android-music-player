@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable/skip_next_icon.xml" value="0.1045" />
         <entry key="app/src/main/res/font/roboto.xml" value="0.18235542422963275" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2633181126331811" />
+        <entry key="app/src/main/res/layout/progress_layout.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1045" />
       </map>
     </option>

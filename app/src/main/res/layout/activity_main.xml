@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#A5A5A5"
     android:backgroundTint="#CCCCCC"
+    android:onClick="playAndPauseMusic"
     tools:context=".activities.MainActivity">
 
     <androidx.cardview.widget.CardView
@@ -55,12 +56,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
-            android:text="Preview da música"
+            android:text="Música completa"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/spotifyButton"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginLeft="6dp"
@@ -70,6 +71,7 @@
             android:foreground="@drawable/ic_spotify_logo_wine"
             android:foregroundTint="@color/black"
             android:gravity="left"
+            android:onClick="openExternalURL"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -128,7 +130,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/popularityNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -161,7 +163,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -196,7 +198,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/durationMusic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -207,5 +209,33 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/playAndPauseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background"
+        android:drawableLeft="@drawable/play_icon_outlined"
+        android:drawablePadding="8dp"
+        android:elevation="4dp"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="30dp"
+        android:paddingEnd="30dp"
+        android:text="Play Preview"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <ViewStub
+        android:id="@+id/viewProgressStub"
+        android:inflatedId="@+id/progressInflatedId"
+        android:layout="@layout/progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
