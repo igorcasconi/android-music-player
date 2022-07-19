@@ -8,8 +8,13 @@ public class TimeString {
   public String convertMsInMinutes(long milliseconds){
     long minutes = (milliseconds / 1000) / 60;
     long seconds = (milliseconds / 1000) % 60;
+    String secondText = String.valueOf(seconds);
 
-    return minutes + ":" + seconds;
+    if (seconds <= 9) {
+      secondText = "0" + seconds;
+    }
+
+    return minutes + ":" + secondText;
   }
 
   public String formatDate(String date) throws ParseException {
