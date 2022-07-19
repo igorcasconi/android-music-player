@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.testapplicationjava.R;
 import com.example.testapplicationjava.interfaces.SpotifyService;
 import com.example.testapplicationjava.models.Music;
+import com.example.testapplicationjava.models.Tracks;
 
 import java.io.IOException;
 
@@ -16,12 +17,12 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DetailMusicController implements SpotifyService {
+public class MusicController implements SpotifyService {
   private Retrofit apiService;
   private Context contextApplication;
 
 
-  public DetailMusicController(Context context){
+  public MusicController(Context context){
     contextApplication = context;
     OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
     String rapidAPIKey = context.getResources().getString(R.string.rapidapi_key);
@@ -55,7 +56,15 @@ public class DetailMusicController implements SpotifyService {
 
   @Override
   public Call<Music> getDetailTrack(String id) {
-    Call<Music> call = new DetailMusicController(contextApplication).getMusic().getDetailTrack(id);
+    Call<Music> call = new MusicController(contextApplication).getMusic().getDetailTrack(id);
     return call;
   }
+
+  @Override
+  public Call<Tracks> getTrackList(String query, int limit, int numberResults, String type) {
+    Call<Tracks> call = new MusicController(contextApplication).getMusic().getTrackList(query, limit, numberResults, type);
+    return call;
+  }
+
+
 }

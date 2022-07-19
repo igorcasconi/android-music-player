@@ -9,6 +9,16 @@ public class Artists {
   String name;
   @SerializedName("type")
   String type;
+  @SerializedName("items")
+  ItemsArtists[] items;
+
+  public ItemsArtists[] getItems() {
+    return items;
+  }
+
+  public void setItems(ItemsArtists[] items) {
+    this.items = items;
+  }
 
   public String getId() {
     return id;

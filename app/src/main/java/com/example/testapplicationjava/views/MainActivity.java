@@ -16,20 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testapplicationjava.R;
-import com.example.testapplicationjava.controllers.DetailMusicController;
+import com.example.testapplicationjava.controllers.MusicController;
 import com.example.testapplicationjava.models.Album;
 import com.example.testapplicationjava.models.Artists;
 import com.example.testapplicationjava.models.ExternalURLS;
 import com.example.testapplicationjava.models.Images;
 import com.example.testapplicationjava.models.Music;
-import com.example.testapplicationjava.models.Tracks;
+import com.example.testapplicationjava.models.AlbumTracks;
 import com.example.testapplicationjava.utils.DownloadImageTask;
 import com.example.testapplicationjava.utils.TimeString;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
   private ViewStub progressScreen;
   private TimeString timeString = new TimeString();
   MediaPlayer mediaPlayer;
-  DetailMusicController apiService;
+  MusicController apiService;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     spotifyButton = findViewById(R.id.spotifyButton);
     progressScreen.inflate();
 
-    apiService = new DetailMusicController(this);
+    apiService = new MusicController(this);
     Call<Music> callService = apiService.getDetailTrack("4WNcduiCmDNfmTEz7JvmLv");
     callService.enqueue(new Callback<Music>() {
       @Override
@@ -106,13 +104,11 @@ public class MainActivity extends AppCompatActivity {
         }
       }
     });
-
-
   }
 
   public void setContentOnActivity(Music music) throws ParseException {
     musicData = music;
-    Tracks[] tracks = music.getTracks();
+    AlbumTracks[] tracks = music.getTracks();
     String nameMusic = tracks[0].getName();
     Album album = tracks[0].getAlbum();
     Artists[] artists = album.getArtists();
@@ -148,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void openExternalURL(View view){
-      Tracks[] tracks = musicData.getTracks();
+      AlbumTracks[] tracks = musicData.getTracks();
       ExternalURLS externalUrls = tracks[0].getExternal_urls();
       String urlSpotify = externalUrls.getSpotify_url();
       System.out.println(urlSpotify);

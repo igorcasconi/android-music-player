@@ -1,23 +1,17 @@
 package com.example.testapplicationjava.models;
 
-import android.net.Uri;
-
 import com.google.gson.annotations.SerializedName;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Music {
 
     @SerializedName("tracks")
-    Tracks[] tracks;
+    AlbumTracks[] tracks;
 
-    public Tracks[] getTracks() {
+    public AlbumTracks[] getTracks() {
         return tracks;
     }
 
-    public void setTracks(Tracks[] tracks) {
+    public void setTracks(AlbumTracks[] tracks) {
         this.tracks = tracks;
     }
 }
