@@ -65,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
     progressScreen = findViewById(R.id.viewProgressStub);
     spotifyButton = findViewById(R.id.spotifyButton);
     progressScreen.inflate();
+    Intent intentHomeActivity = getIntent();
+    String trackId = intentHomeActivity.getStringExtra("trackId");
 
     apiService = new MusicController(this);
-    Call<Music> callService = apiService.getDetailTrack("4WNcduiCmDNfmTEz7JvmLv");
+    Call<Music> callService = apiService.getDetailTrack(trackId);
     callService.enqueue(new Callback<Music>() {
       @Override
       public void onResponse(Call<Music> call, Response<Music> response) {
@@ -147,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
       AlbumTracks[] tracks = musicData.getTracks();
       ExternalURLS externalUrls = tracks[0].getExternal_urls();
       String urlSpotify = externalUrls.getSpotify_url();
-      System.out.println(urlSpotify);
       Uri spotifyPage = Uri.parse(urlSpotify);
       Intent intent = new Intent(Intent.ACTION_VIEW, spotifyPage);
       startActivity(intent);

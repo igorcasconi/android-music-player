@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.example.testapplicationjava.controllers.MusicController;
 import com.example.testapplicationjava.models.TrackItems;
 import com.example.testapplicationjava.models.Tracks;
 import com.example.testapplicationjava.models.TrackData;
+import com.example.testapplicationjava.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class HomeActivity extends AppCompatActivity {
   MusicController apiService;
@@ -49,6 +53,23 @@ public class HomeActivity extends AppCompatActivity {
     emptyList = findViewById(R.id.viewEmptyListStub);
     emptyList.inflate();
     apiService = new MusicController(this);
+
+    trackListRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), trackListRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+      @Override
+      public void onItemClick(View view, int position) {
+        Intent intentHomeActivity = new Intent(HomeActivity.this, MainActivity.class);
+        List<TrackData> trackItems = trackData.getTracks().getItems();
+        String trackId = trackItems.get(position).getData().getId();
+        intentHomeActivity.putExtra("trackId", trackId);
+        startActivity(intentHomeActivity);
+      }
+
+      @Override
+      public void onLongItemClick(View view, int position) {}
+
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+    }));
 
   }
 
