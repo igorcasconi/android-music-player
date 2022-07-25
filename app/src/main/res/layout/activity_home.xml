@@ -51,7 +51,8 @@
             android:elevation="1dp"
             android:foreground="@drawable/ic_round_search_24"
             android:foregroundGravity="center"
-            android:foregroundTint="@color/white" />
+            android:foregroundTint="@color/white"
+            android:onClick="onSearchMusic" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -64,4 +65,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layoutManager="LinearLayoutManager"/>
+
+    <ViewStub
+        android:id="@+id/viewProgressListStub"
+        android:inflatedId="@+id/progressInflatedId"
+        android:layout="@layout/progress_layout_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ViewStub
+        android:id="@+id/viewEmptyListStub"
+        android:inflatedId="@+id/emptyListInflatedId"
+        android:layout="@layout/empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
