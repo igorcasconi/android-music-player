@@ -76,6 +76,7 @@ public class HomeActivity extends AppCompatActivity {
   public void onSearchMusic(View view) {
     String searchContent = inputSearch.getText().toString();
     progressList.setVisibility(View.VISIBLE);
+    emptyList.setVisibility(View.GONE);
 
     if (searchContent.isEmpty()) {
       Toast.makeText(getApplicationContext(), emptySearchInput, Toast.LENGTH_SHORT).show();
