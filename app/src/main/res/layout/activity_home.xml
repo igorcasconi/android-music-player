@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A5A5A5"
+    android:backgroundTint="#CCCCCC"
+    tools:context=".views.HomeActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/searchInputText"
+            android:layout_width="313dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/input_background"
+            android:elevation="4dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Encontre sua música"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="-4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_search"
+            android:elevation="1dp"
+            android:foreground="@drawable/ic_round_search_24"
+            android:foregroundGravity="center"
+            android:foregroundTint="@color/white"
+            android:onClick="onSearchMusic" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trackList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layoutManager="LinearLayoutManager"/>
+
+    <ViewStub
+        android:id="@+id/viewProgressListStub"
+        android:inflatedId="@+id/progressInflatedId"
+        android:layout="@layout/progress_layout_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ViewStub
+        android:id="@+id/viewEmptyListStub"
+        android:inflatedId="@+id/emptyListInflatedId"
+        android:layout="@layout/empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
