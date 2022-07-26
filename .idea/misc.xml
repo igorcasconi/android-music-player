@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.1365" />
         <entry key="app/src/main/res/drawable/button_search.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/button_spotify_background.xml" value="0.121" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_round_search_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_spotify_logo_wine.xml" value="0.121" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.1" />
@@ -18,9 +19,10 @@
         <entry key="app/src/main/res/font/roboto.xml" value="0.18235542422963275" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2633181126331811" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/empty_list.xml" value="0.19410004275331338" />
         <entry key="app/src/main/res/layout/progress_layout.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/progress_layout_list.xml" value="0.15904232578024796" />
+        <entry key="app/src/main/res/layout/progress_layout_list.xml" value="0.67" />
         <entry key="app/src/main/res/layout/track_item_list.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1045" />
       </map>
